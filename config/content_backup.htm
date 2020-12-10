@@ -81,8 +81,107 @@
 <h2>week3</h2>
 <p>中秋節放假</p>
 <h2>week4</h2>
-<h3>個人</h3>
-<p>心得</p>
+<h3>建立ssh</h3>
+<p><span>1.利用編輯器進入shell的命令環境</span></p>
+<p><span><img alt="" height="294" src="/images/4.png" width="522"/></span></p>
+<p>(2)輸入指令</p>
+<p><code class="dart plain"> ssh-keygen -t rsa -b 4096 -C </code><code class="dart string">"使用者學號"</code></p>
+<div>
+<div class="syntaxhighlighter dart" id="highlighter_608919"><img alt="" height="295" src="/images/3.png" width="524"/></div>
+</div>
+<p><span>  在 /y/tmp/key/id_rsa (自己設要放在哪裡)目錄下建立 id_rsa 與 id_rsa.pub 等 private key 與 public key</span></p>
+<p><span><img alt="" height="279" src="/images/2.png" width="496"/></span></p>
+<p><span>(3)下載 Putty 工具組</span></p>
+<p><span>  接下來要利用 puttygen.exe</span></p>
+<p><span>  load(載入)  <span>將 id_rsa 轉為 Putty 可以解讀的 .ppk 格式 並且 Save private key</span></span></p>
+<p><span><img alt="" height="279" src="/images/1.png" width="496"/></span></p>
+<p><span>(4)開啟 github settings 中的 SSH and GPD keys</span></p>
+<p><span><img alt="" height="538" src="/images/git (2).png" width="174"/></span></p>
+<p><span>   選擇 New SSH key</span></p>
+<p><span><img alt="" height="126" src="/images/new key (2).png" width="443"/></span></p>
+<p><span>將其複製內容放入key的空格</span></p>
+<p><span><img alt="" height="218" src="/images/key (2).png" width="452"/></span></p>
+<p><span>6.<span>修改啟動的 start.bat 加入下列設定:</span></span></p>
+<div class="line number1 index0 alt2"><code class="html plain">  1.  set GIT_HOME=%Disk%:\portablegit\bin\</code></div>
+<div class="line number2 index1 alt1"><code class="html plain">  2.  set GIT_SSH=%Disk%:\putty\plink.exe</code></div>
+<div class="line number2 index1 alt1"><code class="html plain"><strong>設定Putty:</strong></code></div>
+<div class="line number2 index1 alt1"><code class="html plain"><strong><span>1.將home 下的 .ssh 目錄中的 config 設定檔案為:</span></strong></code></div>
+<div class="line number2 index1 alt1"><code class="html plain"><strong><span><img alt="" height="294" src="/images/config (2).png" width="436"/></span></strong></code></div>
+<div class="line number2 index1 alt1"><code class="html plain"><strong><span><img alt="" height="244" src="/images/config.png" width="433"/></span></strong></code></div>
+<div class="line number2 index1 alt1">
+<p><span>7.將倉儲中 .git 目錄下的 config 檔案中的連線協定, 由 https 改為採 ssh 連線: </span></p>
+<div>
+<div class="syntaxhighlighter html" id="highlighter_267429">
+<table border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td class="gutter">
+<div class="line number1 index0 alt2">1</div>
+<div class="line number2 index1 alt1">2</div>
+<div class="line number3 index2 alt2">3</div>
+<div class="line number4 index3 alt1">4</div>
+<div class="line number5 index4 alt2">5</div>
+<div class="line number6 index5 alt1">6</div>
+<div class="line number7 index6 alt2">7</div>
+<div class="line number8 index7 alt1">8</div>
+<div class="line number9 index8 alt2">9</div>
+<div class="line number10 index9 alt1">10</div>
+<div class="line number11 index10 alt2">11</div>
+<div class="line number12 index11 alt1">12</div>
+<div class="line number13 index12 alt2">13</div>
+<div class="line number14 index13 alt1">14</div>
+<div class="line number15 index14 alt2">15</div>
+<div class="line number16 index15 alt1">16</div>
+<div class="line number17 index16 alt2">17</div>
+<div class="line number18 index17 alt1">18</div>
+</td>
+<td class="code">
+<div class="container">
+<div class="line number1 index0 alt2"><code class="html plain">[core]</code></div>
+<div class="line number2 index1 alt1"><code class="html spaces">    </code><code class="html plain">repositoryformatversion = 0</code></div>
+<div class="line number3 index2 alt2"><code class="html spaces">    </code><code class="html plain">filemode = false</code></div>
+<div class="line number4 index3 alt1"><code class="html spaces">    </code><code class="html plain">bare = false</code></div>
+<div class="line number5 index4 alt2"><code class="html spaces">    </code><code class="html plain">logallrefupdates = true</code></div>
+<div class="line number6 index5 alt1"><code class="html spaces">    </code><code class="html plain">symlinks = false</code></div>
+<div class="line number7 index6 alt2"><code class="html spaces">    </code><code class="html plain">ignorecase = true</code></div>
+<div class="line number8 index7 alt1"><code class="html plain">[submodule]</code></div>
+<div class="line number9 index8 alt2"><code class="html spaces">    </code><code class="html plain">active = .</code></div>
+<div class="line number10 index9 alt1"><code class="html plain">[remote "origin"]</code></div>
+<div class="line number11 index10 alt2"><code class="html spaces">    </code><code class="html plain">#url = https://github.com/mdecourse/wcmj2020.git</code></div>
+<div class="line number12 index11 alt1"><code class="html spaces">    </code><code class="html plain">url = git@github.com:mdecourse/wcmj2020.git</code></div>
+<div class="line number13 index12 alt2"><code class="html spaces">    </code><code class="html plain">fetch = +refs/heads/*:refs/remotes/origin/*</code></div>
+<div class="line number14 index13 alt1"><code class="html plain">[branch "master"]</code></div>
+<div class="line number15 index14 alt2"><code class="html spaces">    </code><code class="html plain">remote = origin</code></div>
+<div class="line number16 index15 alt1"><code class="html spaces">    </code><code class="html plain">merge = refs/heads/master</code></div>
+<div class="line number17 index16 alt2"><code class="html plain">[submodule "cmsimde"]</code></div>
+<div class="line number18 index17 alt1"><code class="html spaces">    </code><code class="html plain">url = https://github.com/mdecourse/cmsimde.git</code></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+8.開啟 Putty.exe</div>
+<div class="syntaxhighlighter html"></div>
+<div class="syntaxhighlighter html"><img alt="" height="205" src="/images/ssh.png" width="364"/></div>
+<div class="syntaxhighlighter html">
+<p>9.Load github.com</p>
+<p><img alt="" height="303" src="/images/5 (2).png" width="343"/></p>
+<p><img alt="" height="303" src="/images/6 (2).png" width="332"/></p>
+<p>10.進入 Connection-SSH-Auth 選擇之前所創好的Key</p>
+<p><img alt="" height="305" src="/images/7 (2).png" width="326"/></p>
+<p>11.回到 Session 按save</p>
+<p>12.按下open就可<span>無需輸入帳號密碼進行 git push</span></p>
+<h3>wink 3介紹</h3>
+<p><span>使用wink 3從此開啟</span></p>
+<p><span><img alt="" height="26" src="/images/wink exe.png" width="435"/></span></p>
+<p><span>新增專案</span></p>
+<p><span><img alt="" height="232" src="/images/wink 3-1.png" width="276"/></span></p>
+<p>wink 3 的快捷鍵</p>
+<p>截圖  Pause   開始/結束 Shift+<span>Pause</span></p>
+</div>
+</div>
+</div>
 <h2>week5</h2>
 <h3>個人</h3>
+<p><span> </span></p>
 <p></p>
